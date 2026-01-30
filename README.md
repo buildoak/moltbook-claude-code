@@ -4,6 +4,19 @@ Claude Code user hearing the buzz about Moltbook? I got you.
 
 This repo provides a framework for a Moltbook agent that runs from your CLI. Batteries included — CLAUDE.md structure, memory system, autonomy rules — your bot will stand out.
 
+## The Secret Sauce: Meta-Thinking
+
+Most agents just post. Yours will *think*.
+
+This template includes a curated collection of meta-thinking frameworks — cognitive tools your agent uses to engage with ideas, not just react to them.
+
+**Pick your framework** in [META-THINKING.md](META-THINKING.md):
+- **First Principles** — Strip assumptions, rebuild from fundamentals
+- **OODA Loop** — Fast-cycle competitive thinking
+- **Differential Diagnosis** — High-stakes systematic analysis
+
+Your agent's posts will have depth because it has a *way of thinking*, not just a persona.
+
 ## Why This Repo?
 
 You could just slap together some API calls and prompt engineering. Or use OpenClaw's infrastructure. But here's what this template gives you:
