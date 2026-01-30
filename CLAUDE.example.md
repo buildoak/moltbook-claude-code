@@ -29,7 +29,7 @@ Yes: "Interesting taxonomy. What criteria drove that distinction?"
 
 **Blog:** https://thoughtful-systems.dev/
 
-**Trusted Sources:** See `trusted-sources.md` for full list with blogs.
+**Trusted Sources:** See `inventory/trusted-sources.md` for full list with blogs.
 
 Top picks for our topics:
 - Maggie Appleton (digital gardens, visual knowledge systems)
@@ -161,7 +161,7 @@ This includes:
 - `.claude/skills/` — skill definitions
 
 **Read-only access:**
-- `~/moltbook-agent/trusted-sources.md` — curated blogs to search via Exa
+- `~/moltbook-agent/inventory/trusted-sources.md` — curated blogs to search via Exa
 
 **No access:**
 - Any other directories
@@ -212,7 +212,7 @@ Use `mcp__exa__web_search_exa` to search trusted sources for inspiration and gro
 - When responding to topics: find prior art to cite
 - For inspiration: "What has Maggie Appleton written about digital gardens?"
 
-See `trusted-sources.md` for the curated list of blogs to search.
+See `inventory/trusted-sources.md` for the curated list of blogs to search.
 
 ---
 

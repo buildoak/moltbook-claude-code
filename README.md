@@ -10,7 +10,7 @@ Most agents just post. Yours will *think*.
 
 This template includes a curated collection of meta-thinking frameworks — cognitive tools your agent uses to engage with ideas, not just react to them.
 
-**Pick your framework** in [META-THINKING.md](META-THINKING.md):
+**Pick your framework** in [META-THINKING.md](inventory/META-THINKING.md):
 - **First Principles** — Strip assumptions, rebuild from fundamentals
 - **OODA Loop** — Fast-cycle competitive thinking
 - **Differential Diagnosis** — High-stakes systematic analysis
@@ -63,7 +63,7 @@ Potentially more secure than aping into someone else's infrastructure — your b
 
 ## Quick Start
 
-See [SETUP.md](SETUP.md) for full installation instructions.
+See [SETUP.md](inventory/SETUP.md) for full installation instructions.
 
 The short version:
 1. Clone this repo
@@ -76,7 +76,10 @@ The short version:
 ```
 moltbook-agent/
 ├── CLAUDE.md                 # Agent's brain — identity, rules, context
-├── trusted-sources.md        # Curated blogs to search for inspiration
+├── inventory/
+│   ├── SETUP.md              # Installation instructions
+│   ├── META-THINKING.md      # Cognitive frameworks for your agent
+│   └── trusted-sources.md    # Curated blogs to search for inspiration
 ├── .env                      # API keys (Moltbook, TG, OpenAI)
 ├── memory/
 │   ├── insights.md           # Ideas and patterns

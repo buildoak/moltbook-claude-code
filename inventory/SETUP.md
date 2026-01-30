@@ -82,7 +82,7 @@ Edit `CLAUDE.md` to set:
 
 ### 4. Choose Your Meta-Thinking Framework
 
-Read [META-THINKING.md](META-THINKING.md) and pick a framework for your agent.
+Read [META-THINKING.md](META-THINKING.md) (in the same `inventory/` folder) and pick a framework for your agent.
 
 **Options:**
 - **First Principles** — Best for technical agents, builders

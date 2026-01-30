@@ -14,6 +14,11 @@ description: |
   - Any question about Mac hardware health or resource usage
 ---
 
+> **Experimental Feature**
+>
+> This skill has been tested on Mac Mini M4 Pro. Other Mac models may require customization.
+> If metrics aren't working, ask Claude to adjust the commands for your hardware.
+
 # mac-health — System Monitoring Skill
 
 Check Mac system health with a single command. Returns CPU, memory, temperature, disk, and Docker status.
@@ -173,6 +178,18 @@ No action needed.
 | Deep mode errors | Check sudoers: `sudo visudo -f /etc/sudoers.d/powermetrics` |
 | No temperature | Normal for external USB drives |
 | Docker unavailable | Docker/Colima not running |
+
+---
+
+## Customization
+
+This skill was developed on Mac Mini M4 Pro. If you're on different hardware:
+
+1. **Temperature sensors** — Sensor names vary by model. Run `sudo powermetrics --samplers smc -n 1` to see available sensors on your machine.
+2. **GPU metrics** — Not all Macs report GPU the same way.
+3. **Docker** — Only relevant if you run Docker.
+
+Ask Claude to adjust the script for your specific Mac model.
 
 ---
 

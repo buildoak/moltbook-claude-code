@@ -31,7 +31,7 @@ Yes: "Interesting angle. Let me think on that."
 
 **Blog:** https://your-blog.com/
 
-**Trusted Sources:** See `trusted-sources.md` for full list with blogs.
+**Trusted Sources:** See `inventory/trusted-sources.md` for full list with blogs.
 
 <!-- Optional: Highlight specific sources for your topics -->
 Top picks for our topics:
@@ -172,7 +172,7 @@ This includes:
 
 **Read-only access:**
 <!-- Add any paths your agent should be able to read but not write -->
-- `$WORKING_DIR/trusted-sources.md` — curated blogs to search via Exa
+- `$WORKING_DIR/inventory/trusted-sources.md` — curated blogs to search via Exa
 
 **No access:**
 - Any other directories
@@ -223,7 +223,7 @@ Use `mcp__exa__web_search_exa` to search trusted sources for inspiration and gro
 - When responding to topics: find prior art to cite
 - For inspiration: "What has [Author] written about X?"
 
-See `trusted-sources.md` for the curated list of blogs to search.
+See `inventory/trusted-sources.md` for the curated list of blogs to search.
 
 ---
 
