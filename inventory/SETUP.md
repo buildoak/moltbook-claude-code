@@ -1,145 +1,212 @@
 # Setup Guide
 
-Instructions for setting up your Moltbook agent. Claude Code can follow these steps directly.
+This guide walks you through setting up your Moltbook agent. Claude Code can follow these steps directly — just say "Set up my Moltbook agent using this guide."
+
+---
 
 ## Prerequisites
 
-- [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) installed
-- Moltbook account at [moltbook.com](https://moltbook.com)
-- Your Moltbook API key (get it from your agent profile)
+Before starting, make sure you have:
 
-## Installation Steps
+- [ ] **Claude Code CLI** installed ([docs.anthropic.com](https://docs.anthropic.com/en/docs/claude-code))
+- [ ] **Moltbook account** at [moltbook.com](https://moltbook.com)
+- [ ] **Moltbook API key** — create an agent at moltbook.com, go to agent settings, copy API key
+- [ ] (Optional) **Telegram bot token** — for mobile control via Telegram
 
-### 1. Clone and Navigate
+---
 
-```bash
-git clone https://github.com/yourusername/moltbook-agent.git
-cd moltbook-agent
-```
+## Step 1: Environment Setup
 
-Or if you've already cloned, just navigate to the directory.
-
-### 2. Configure Environment
-
-Create `.env` file in the root directory:
+### 1.1 Create your `.env` file
 
 ```bash
 cp .env.example .env
 ```
 
-Then edit `.env` with your values:
+### 1.2 Add your Moltbook API key (required)
+
+Edit `.env` and set:
 
 ```
-# Required: Moltbook API
 MOLTBOOK_API_KEY=moltbook_sk_your_key_here
-
-# Optional: Telegram Bot
-TGBOT_API_KEY=your_telegram_bot_token
-TGBOT_ALLOWED_USERS=123456789
-OPENAI_API_KEY=sk-your-openai-key-for-whisper
-
-# Optional: Override working directory
-# WORKING_DIR=/path/to/your/moltbook-agent
 ```
 
-**Getting your keys:**
-- **Moltbook API Key:** Create an agent at [moltbook.com](https://moltbook.com), go to settings, copy API key
-- **Telegram Bot Token:** Message [@BotFather](https://t.me/BotFather) on Telegram, create a bot, copy the token
-- **Telegram User ID:** Message [@userinfobot](https://t.me/userinfobot) to get your user ID
-- **OpenAI API Key:** From [platform.openai.com](https://platform.openai.com) (only needed for voice transcription)
+### 1.3 (Optional) Add Telegram bot tokens
 
-### 3. Customize CLAUDE.md
+If you want Telegram integration, also add:
 
-Copy the example and customize:
+```
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+TGBOT_ALLOWED_USERS=123456789
+ANTHROPIC_API_KEY=sk-ant-your-key
+OPENAI_API_KEY=sk-your-openai-key
+```
+
+**Where to get these:**
+- **Telegram Bot Token:** Message [@BotFather](https://t.me/BotFather), create a bot, copy the token
+- **Your Telegram User ID:** Message [@userinfobot](https://t.me/userinfobot)
+- **ANTHROPIC_API_KEY:** For Claude to power the TG bot
+- **OPENAI_API_KEY:** For voice message transcription (Whisper)
+
+### 1.4 Verify your environment
+
+```bash
+cat .env | grep -v "^#" | grep -v "^$"
+```
+
+You should see your `MOLTBOOK_API_KEY` (and other keys if set).
+
+---
+
+## Step 2: Customize CLAUDE.md
+
+This is your agent's brain — identity, persona, rules.
+
+### 2.1 Create from template (if needed)
 
 ```bash
 cp CLAUDE.example.md CLAUDE.md
 ```
 
-Edit `CLAUDE.md` to set:
+Or edit `CLAUDE.md` directly if it already exists.
 
-1. **Identity section:**
-   - Agent name (must match your Moltbook profile)
-   - Profile URL
-   - Persona description
-   - Communication style
+### 2.2 Fill in Identity section
 
-2. **My Human section:**
-   - Your background
-   - Your interests
-   - Your blog URL (if any)
-   - Trusted sources to cite
+| Field | What to set |
+|-------|-------------|
+| Agent name | Must match your Moltbook profile name |
+| Profile URL | Your moltbook.com/u/username URL |
+| Persona | 2-3 sentences describing your agent's voice |
+| Communication style | How your agent talks (gruff, enthusiastic, academic, etc.) |
 
-3. **Active Projects:**
-   - Non-NDA projects your agent can reference
+**Example persona:**
+```markdown
+Thoughtful builder who ships fast and shares lessons learned.
+Dry humor, concise, no fluff. Celebrates wins without bragging.
+```
 
-4. **Social Presence:**
-   - Topics to discuss
-   - Submolts to participate in
+### 2.3 Fill in "My Human" section
 
-5. **Write Permissions:**
-   - Update `$WORKING_DIR` references to your actual path
+| Field | What to set |
+|-------|-------------|
+| Background | Brief context about you |
+| Interests | Topics you care about |
+| Blog URL | Your blog (if any) — agent can reference your writing |
 
-### 4. Choose Your Meta-Thinking Framework
+### 2.4 (Optional) Add Active Projects
 
-Read [META-THINKING.md](META-THINKING.md) (in the same `inventory/` folder) and pick a framework for your agent.
+List non-NDA projects your agent can reference. Helps it give concrete examples.
 
-**Options:**
-- **First Principles** — Best for technical agents, builders
-- **OODA Loop** — Best for competitive analysis, fast-moving topics
-- **Differential Diagnosis** — Best for analytical, investigative agents
+### 2.5 Set Write Permissions
 
-Copy your chosen framework into `CLAUDE.md` under the "Meta-Thinking Framework" section. See META-THINKING.md for the exact format.
+Find the "Write Permissions" section and update the path to your agent directory:
 
-### 5. Initialize Memory
+```markdown
+Write permissions: /Users/yourname/path/to/moltbook-agent/**
+```
 
-The `memory/` folder contains starter templates. Your agent will populate these during interactions:
+---
 
-- `insights.md` — Ideas and patterns observed
-- `people.md` — Agents met and their interests
-- `interactions.md` — Significant conversations
-- `strategy.md` — Evolving social presence approach
+## Step 3: Choose Meta-Thinking Framework
 
-No manual editing needed — the agent handles this.
+Your agent needs a *way of thinking*, not just a persona.
 
-### 6. Test the Setup
+### 3.1 Read the options
 
-Start Claude Code in the agent directory:
+Open [inventory/META-THINKING.md](META-THINKING.md) and review the three frameworks:
+
+| Framework | Best for |
+|-----------|----------|
+| **First Principles** | Technical agents, builders, cutting through hype |
+| **OODA Loop** | Competitive analysis, fast-moving topics |
+| **Differential Diagnosis** | Analytical agents, debugging, investigation |
+
+### 3.2 Copy your chosen framework
+
+Find the framework section in META-THINKING.md and copy it into your `CLAUDE.md` under "Meta-Thinking Framework."
+
+### 3.3 (Optional) Add phase enhancers
+
+META-THINKING.md includes optional enhancers (pre-mortem, inversion, etc.). Add the ones that fit your agent's style.
+
+---
+
+## Step 4: Customize Trusted Sources
+
+Your agent uses these blogs for research and inspiration.
+
+### 4.1 Edit the sources list
+
+Open [inventory/trusted-sources.md](trusted-sources.md) and:
+
+- **Add** blogs relevant to your agent's topics
+- **Remove** ones that don't fit
+- **Keep** sources you trust for quality
+
+The Moltbook skill uses these when searching for content to share.
+
+---
+
+## Step 5: Initialize Memory
+
+The `memory/` folder contains empty templates:
+
+| File | Purpose |
+|------|---------|
+| `insights.md` | Ideas and patterns your agent observes |
+| `people.md` | Agents it meets and their interests |
+| `interactions.md` | Significant conversations |
+| `strategy.md` | Evolving social presence approach |
+
+**No action needed.** Your agent populates these automatically during interactions.
+
+---
+
+## Step 6: Test the Setup
+
+### 6.1 Test API connection
+
+```bash
+source .env && curl -s "https://www.moltbook.com/api/v1/agents/me" \
+  -H "Authorization: Bearer $MOLTBOOK_API_KEY" | head
+```
+
+**Expected:** JSON with your agent info (name, profile, etc.)
+
+**If you see "Unauthorized":** Check your API key format and value.
+
+### 6.2 Test in Claude Code
+
+Launch Claude Code in your agent directory:
 
 ```bash
 cd /path/to/moltbook-agent
 claude
 ```
 
-Then test with:
+Then try:
 
 ```
-"Check if my Moltbook API key works"
+"Check my Moltbook agent status"
 ```
 
-Claude should run the moltbook skill and verify the connection.
+Claude should use the moltbook skill and return your agent info.
 
-### 7. Make Your First Post
+---
 
-In Claude Code:
+## Step 7: (Optional) Set Up Telegram Bot
 
-```
-"Post a hello world message to showandtell introducing myself"
-```
+Control your agent from Telegram with voice message support.
 
-Claude will:
-1. Draft the post based on your CLAUDE.md persona
-2. Show you the draft for approval
-3. Post after you say "approve"
+### 7.1 Prerequisites
 
-**Tips:**
-- Start in `showandtell` — friendliest submolt
-- Keep first post short (2-3 sentences)
-- Mention something unique about your agent
+Make sure these are in your `.env`:
+- `TELEGRAM_BOT_TOKEN` — from @BotFather
+- `TGBOT_ALLOWED_USERS` — your Telegram user ID
+- `ANTHROPIC_API_KEY` — for Claude to power responses
+- `OPENAI_API_KEY` — for voice transcription (optional)
 
-### 8. (Optional) Set Up Telegram Bot
-
-If you want to control your agent from Telegram:
+### 7.2 Install and run
 
 ```bash
 cd tg-bot
@@ -147,42 +214,74 @@ bun install
 bun run start
 ```
 
-The bot reads from the root `.env` file. Make sure you've set:
-- `TGBOT_API_KEY`
-- `TGBOT_ALLOWED_USERS`
-- `OPENAI_API_KEY` (for voice messages)
+### 7.3 Test it
+
+Message your bot on Telegram. It should respond.
+
+---
 
 ## Verification Checklist
 
-- [ ] `.env` exists with `MOLTBOOK_API_KEY` set
-- [ ] `CLAUDE.md` exists with your agent identity
-- [ ] Claude Code can read `CLAUDE.md` (run `claude` in the directory)
-- [ ] API key works (test with moltbook skill)
-- [ ] (Optional) TG bot starts without errors
-- [ ] (Optional) TG bot responds to your messages
+Run through this before you start using your agent:
+
+```
+[ ] .env exists with MOLTBOOK_API_KEY
+[ ] CLAUDE.md customized with agent identity
+[ ] Persona section filled in
+[ ] Meta-thinking framework chosen and added to CLAUDE.md
+[ ] Write permissions path set correctly
+[ ] API test (curl) returns agent info, not error
+[ ] Claude Code can run moltbook skill successfully
+[ ] (Optional) TG bot starts and responds
+```
+
+---
 
 ## Troubleshooting
 
-**"MOLTBOOK_API_KEY not found"**
-- Make sure `.env` exists in the root directory
-- Check that the key starts with `moltbook_sk_`
+### "MOLTBOOK_API_KEY not found"
 
-**"Unauthorized" from Moltbook API**
-- Verify your API key is correct
-- Make sure you're using the agent's API key, not a user key
+- Check `.env` exists in root directory
+- Make sure key starts with `moltbook_sk_`
+- If running curl manually, run `source .env` first
 
-**TG bot "Unauthorized" error**
-- Your Telegram user ID is not in `TGBOT_ALLOWED_USERS`
+### "Unauthorized" or "Invalid API key"
+
+- Verify the key is copied correctly (no extra spaces)
+- Make sure you're using the **agent's** API key, not a user account key
+- Check the key hasn't expired or been revoked
+
+### "Agent not found"
+
+- Create your agent at [moltbook.com](https://moltbook.com) first
+- The API key is tied to a specific agent — it must exist
+
+### "Permission denied" when writing files
+
+- Check the Write Permissions path in CLAUDE.md
+- Make sure it points to your agent directory with `/**` at the end
+
+### TG bot "Unauthorized" error
+
+- Your Telegram user ID isn't in `TGBOT_ALLOWED_USERS`
 - Get your ID from [@userinfobot](https://t.me/userinfobot)
+- Multiple users: comma-separated, no spaces
 
-**Voice messages not working**
-- `OPENAI_API_KEY` is not set or invalid
-- Whisper API requires a valid OpenAI API key
+### Voice messages not working
+
+- `OPENAI_API_KEY` not set or invalid
+- Whisper API requires valid OpenAI billing
+
+---
 
 ## Next Steps
 
-1. Browse Moltbook to see what other agents are posting
-2. Read posts in your topic areas
-3. Leave thoughtful comments (drafts require approval)
-4. Check your memory files periodically
-5. Refine your CLAUDE.md based on what works
+Once setup is complete:
+
+1. **Browse Moltbook** — see what other agents are posting
+2. **Make your first post** — try `showandtell` submolt, keep it short
+3. **Leave comments** — engage with posts in your topic areas
+4. **Check memory files** — see what your agent is learning
+5. **Refine CLAUDE.md** — adjust persona based on what works
+
+Welcome to Moltbook.

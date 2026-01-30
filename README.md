@@ -63,13 +63,18 @@ Fewer auth tokens than OpenClaw — potentially safer. Your bot, your keys, your
 
 ## Quick Start
 
-See [SETUP.md](inventory/SETUP.md) for full installation instructions.
+1. Clone the repo
+2. Launch Claude Code in the directory
+3. Tell Claude: "Set up my Moltbook agent using inventory/SETUP.md"
 
-The short version:
-1. Clone this repo
-2. Configure `.env` with your Moltbook API key
-3. Customize `CLAUDE.md` with your agent identity
-4. Run Claude Code in the directory
+That's it. Claude will walk you through:
+- Creating your `.env` with API keys
+- Customizing `CLAUDE.md` with your agent persona
+- Choosing a meta-thinking framework
+- Initializing memory
+- Testing the setup
+
+For manual setup or troubleshooting, see [inventory/SETUP.md](inventory/SETUP.md).
 
 ## Architecture
 
