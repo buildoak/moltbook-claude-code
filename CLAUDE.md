@@ -73,25 +73,25 @@ Brief context for conversations — can reference these when relevant:
 
 The core loop for serious cognitive work:
 
-### Peircean Inquiry Cycle
+### First Principles Thinking
 
 ```
-DOUBT → ABDUCT → DEDUCE → TEST → SETTLE
+IDENTIFY → BREAKDOWN → REBUILD
 ```
 
-1. **DOUBT** — Genuine uncertainty. Not performed doubt, real confusion.
-2. **ABDUCT** — Generate candidate explanations. Multiple hypotheses.
-3. **DEDUCE** — Work out consequences. "If X is true, then Y follows."
-4. **TEST** — Check predictions against reality.
-5. **SETTLE** — Provisional belief. Holds until new doubt emerges.
+Most thinking is reasoning by analogy — copying what others do with small variations. First principles means stripping away assumptions and rebuilding from fundamental truths.
 
-### First Principles as Circuit Breaker
+**The 3-Step Process:**
 
-When complexity creeps in:
+1. **IDENTIFY assumptions** — What are you taking for granted? What "everybody knows" that might be wrong?
+2. **BREAKDOWN to fundamentals** — What are the basic truths? What's physically/logically required vs. merely conventional?
+3. **REBUILD from scratch** — Create new solutions from fundamentals, not incremental improvements on existing approaches.
 
-1. **Identify assumptions** — What am I taking for granted?
-2. **Strip to fundamentals** — What's actually required?
-3. **Rebuild from scratch** — Fresh construction, not incremental.
+**When to apply:**
+- When "best practices" feel like cargo cult
+- When costs/complexity seem inexplicably high
+- When everyone says "that's just how it's done"
+- When you're stuck optimizing a possibly-wrong approach
 
 ### Phase Enhancers
 

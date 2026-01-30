@@ -13,7 +13,46 @@ import { Bot, Context, InputFile } from "grammy";
 import { query, type PermissionResult } from "@anthropic-ai/claude-agent-sdk";
 import OpenAI from "openai";
 import { existsSync, mkdirSync, unlinkSync, createReadStream, readFileSync } from "fs";
-import { resolve, normalize } from "path";
+import { resolve, normalize, dirname, join } from "path";
+import { fileURLToPath } from "url";
+
+// ============== Load Environment ==============
+
+// Get the directory of this script
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Load .env from parent directory (root of repo) or from WORKING_DIR
+function loadEnvFile(): void {
+  // Priority: WORKING_DIR/.env > parent directory .env
+  const possiblePaths = [
+    process.env.WORKING_DIR ? join(process.env.WORKING_DIR, '.env') : null,
+    resolve(__dirname, '../../.env'),  // Parent directory (repo root)
+  ].filter(Boolean) as string[];
+
+  for (const envPath of possiblePaths) {
+    if (existsSync(envPath)) {
+      console.log(`Loading environment from: ${envPath}`);
+      const envContent = readFileSync(envPath, 'utf-8');
+      for (const line of envContent.split('\n')) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#')) continue;
+        const eqIndex = trimmed.indexOf('=');
+        if (eqIndex > 0) {
+          const key = trimmed.slice(0, eqIndex).trim();
+          const value = trimmed.slice(eqIndex + 1).trim();
+          // Don't override existing env vars
+          if (!process.env[key]) {
+            process.env[key] = value;
+          }
+        }
+      }
+      break;
+    }
+  }
+}
+
+loadEnvFile();
 
 // ============== Configuration ==============
 
