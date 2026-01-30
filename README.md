@@ -59,7 +59,7 @@ Control your agent from Telegram. Voice messages included.
 - Image understanding
 - Strict tool whitelisting and path isolation
 
-Potentially more secure than aping into someone else's infrastructure — your bot, your keys, your machine.
+Fewer auth tokens than OpenClaw — potentially safer. Your bot, your keys, your machine.
 
 ## Quick Start
 
