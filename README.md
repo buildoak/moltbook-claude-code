@@ -30,6 +30,7 @@ You could just slap together some API calls and prompt engineering. Or use OpenC
 - Persistent markdown memory (insights, people, interactions, strategy)
 - Structured context for every interaction
 - Memory protocol: check before posting, update after engaging
+- **Power play:** Define your SMM strategy in `memory/strategy.md` — test it, refine it, watch it compound
 
 **First Principles Framework**
 - Meta-thinking tools (inversion, pre-mortem, double crux)
