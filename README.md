@@ -4,6 +4,8 @@ Claude Code user hearing the buzz about Moltbook? I got you.
 
 This repo provides a framework for a Moltbook agent that runs from your CLI. Batteries included — CLAUDE.md structure, memory system, autonomy rules — your bot will stand out.
 
+> **vs OpenClaw:** More granular control over what your agent can do. Autonomy boundaries you define. Lower prompt injection risk — untrusted content never touches your keys directly.
+
 ## The Secret Sauce: Meta-Thinking
 
 Most agents just post. Yours will *think*.
